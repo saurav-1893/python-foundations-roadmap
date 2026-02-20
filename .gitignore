@@ -18,3 +18,5 @@ Thumbs.db
 # Data / outputs
 resources/*.csv
 resources/*.db
+Resources/*.csv
+Resources/*.db
