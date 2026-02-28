@@ -89,3 +89,28 @@ if __name__ == "__main__":
         print(f'Longest word: {longest_word} (Length: {len(longest_word)})')
     else:
         print("Longest word: None (no words found)")
+
+# default top value (print top 1 by default)
+top_n = 1
+
+if "--top" in sys.argv:
+    idx = sys.argv.index("--top")
+
+    if idx +1 < len(sys.argv):
+        raw = sys.argv[idx + 1]
+        try:
+            val = int(raw)
+            if val > 0:
+                top_n = val
+            else:
+                print(f'Warning: --top must be a positive integer, got {raw}. Using default top={top_n}.')
+        except ValueError:
+            print(f"Warning: invalid number for --top: {raw}. Using default top={top_n}.")       
+else:
+    print("Warning: --top provided but no number given. Using default top=1.")
+
+# compute and print top N words
+top_list = sorted(word_freq.items(), key=lambda x: x[1], reverse=True)[:top_n]
+print(f"\nTop {top_n} words:")
+for w, c in top_list:
+    print(f"{w}: {c}")
