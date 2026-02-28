@@ -17,6 +17,7 @@
 # Saves the frequency table to a CSV file resources/word_freq.csv.
 
 import sys
+import os
 
 def analyze_text(file_path):
     with open(file_path, "r") as f:
@@ -71,6 +72,10 @@ if __name__ == "__main__":
         sys.exit(1)
     
     input_file = sys.argv[1]
+
+    if not os.path.exists(input_file):
+        print(f"Error: file '{input_file}' does not exist.")
+        sys.exit(1)
     line_count, word_count, word_freq = analyze_text(input_file)
 
 
